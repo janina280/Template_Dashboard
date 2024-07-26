@@ -2,17 +2,17 @@
     <div class="container mt-5">
         <div class="row">
             <div class="col-md-12">
-                <div class="card">
+                <div class="card mt-3 ml-5">
                     <div class="card-header">
-                        <H1>Create Permission
+                        <div class="text-3xl text-gray-900 dark:text-white">Create Permission
                             <a href="{{url('permissions')}}" class="btn float-end text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Back</a>
-                        </H1>
+                        </div>
                     </div>
                     <div class="card-body">
                         <form action="{{url('permissions')}}" method="POST">
                            @csrf
-                            <div class="mb-3">
-                                <label for="">
+                            <div class="mb-5">
+                                <label for="" class="text-xl text-gray-900 dark:text-white ">
                                     Permission Name
                                 </label>
                                 <input type="text" name="name" class="form-control" />
