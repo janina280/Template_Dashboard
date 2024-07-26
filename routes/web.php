@@ -1,5 +1,6 @@
 <?php
 
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DataFeedController;
 use App\Http\Controllers\DashboardController;
@@ -26,6 +27,9 @@ use App\Http\Controllers\Backend\RoleController;
 
 Route::redirect('/', 'login');
 Route::get('redirects', 'App\Http\Controllers\HomeController@index');
+Route::resource('permissions', App\Http\Controllers\Backend\PermissionController::class);
+
+
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
