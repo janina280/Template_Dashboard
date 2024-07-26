@@ -25,6 +25,7 @@ use App\Http\Controllers\Backend\RoleController;
 */
 
 Route::redirect('/', 'login');
+Route::get('redirects', 'App\Http\Controllers\HomeController@index');
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
