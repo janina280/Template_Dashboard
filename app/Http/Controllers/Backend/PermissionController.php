@@ -9,7 +9,10 @@ use Spatie\Permission\Models\Permission;
 class PermissionController extends Controller
 {
  public function index(){
-    return view('role-permission.permission.index');
+    $permissions = Permission::get();
+    return view('role-permission.permission.index',[
+        'permissions'=>$permissions
+    ]);
  }
 
  public function create(){
@@ -28,10 +31,24 @@ class PermissionController extends Controller
     ]);
     return redirect('permissions')->with('status','Permission Created Successfully');
  }
- public function edit(){
+ public function edit(Permission $permission){
 
+    return view('role-permission.permission.edit',[
+        'permission'=>$permission
+    ]);
  }
- public function update(){
+ public function update(Request $request, Permission $permission){
+    $request->validate([
+        'name'=> [
+            'required',
+            'string',
+            'unique:permissions,name'.$permission->id
+        ],
+    ]);
+    $permission->update([
+        'name'=>$request->name
+    ]);
+    return redirect('permissions')->with('status','Permission Updated Successfully');
 
  }
  public function destroy(){

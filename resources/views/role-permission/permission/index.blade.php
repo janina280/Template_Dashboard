@@ -18,8 +18,30 @@
                 <div class="card mt-3 ml-10">
                     <div class="card-header">
                         <div class="text-4xl text-gray-900 dark:text-white"> Permissions
-                            <a href="{{url('permissions/create')}}" class="btn btn-primary float-end text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Add Permission</a>
+                            <a href="{{url('permissions/create')}}" class="btn float-end text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Add Permission</a>
                         </div>
+                    </div>
+                    <div class="card-body center">
+                        <table class="table-auto border-collapse border-2 border-violet-500 custom-table shadow-xl">
+                            <thead>
+                              <tr>
+                                <th class="px-4 py-2">Id</th>
+                                <th class="px-4 py-2">Name</th>
+                                <th class="px-4 py-2">Action</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($permissions as $permission)
+                              <tr>
+                                <td  class="border px-4 py-2">{{$permission->id}}</td>
+                                <td  class="border px-4 py-2">{{$permission->name}}</td>
+                                <td  class="border px-4 py-2"><a href="{{url('permissions/'.$permission->id.'/edit') }} " class="btn text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Edit</a>
+                                                              <a href="{{url('permissions/ ') }} " class="btn text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Delete</a>
+                                </td>
+                              </tr>
+                              @endforeach
+                            </tbody>
+                          </table>
                     </div>
                 </div>
             </div>

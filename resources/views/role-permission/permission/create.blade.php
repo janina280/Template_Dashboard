@@ -11,7 +11,7 @@
                     <div class="card-body">
                         <form action="{{url('permissions')}}" method="POST">
                            @csrf
-                            <div class="mb-5">
+                            <div class="mb-5 mt-8">
                                 <label for="" class="text-xl text-gray-900 dark:text-white ">
                                     Permission Name
                                 </label>
