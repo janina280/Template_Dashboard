@@ -2,17 +2,17 @@
 
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\JobController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\MemberController;
+use App\Http\Controllers\InvoiceController;
+use App\Http\Controllers\CampaignController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DataFeedController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\CustomerController;
-use App\Http\Controllers\OrderController;
-use App\Http\Controllers\InvoiceController;
-use App\Http\Controllers\MemberController;
 use App\Http\Controllers\TransactionController;
-use App\Http\Controllers\JobController;
-use App\Http\Controllers\CampaignController;
 use App\Http\Controllers\Backend\PostTypeController;
-use App\Http\Controllers\Backend\RoleController;
+use App\Http\Controllers\Backend\PermissionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,20 +26,20 @@ use App\Http\Controllers\Backend\RoleController;
 */
 
 Route::redirect('/', 'login');
-Route::get('redirects', 'App\Http\Controllers\HomeController@index');
-Route::resource('permissions', App\Http\Controllers\Backend\PermissionController::class);
 
-
+Route::resource('permissions', PermissionController::class);
+Route::get('permissions/{permissionId}/delete', [PermissionController::class, 'destroy']);
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     // Route for the getting the data feed
     Route::get('/json-data-feed', [DataFeedController::class, 'getDataFeed'])->name('json_data_feed');
-
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-    Route::controller(PostTypeController::class)->group(function(){
-        Route::get('/all/posts','AllPosts')->name('all.posts');
-        Route::get('/add/post','AddPost')->name('add.post');
+
+
+    Route::controller(PostTypeController::class)->group(function () {
+        Route::get('/all/posts', 'AllPosts')->name('all.posts');
+        Route::get('/add/post', 'AddPost')->name('add.post');
     });
     Route::get('/ecommerce/customers', [CustomerController::class, 'index'])->name('customers');
     Route::get('/ecommerce/orders', [OrderController::class, 'index'])->name('orders');
@@ -200,7 +200,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/component/icons', function () {
         return view('pages/component/icons-page');
     })->name('icons-page');
-    Route::fallback(function() {
+    Route::fallback(function () {
         return view('pages/utility/404');
     });
 });

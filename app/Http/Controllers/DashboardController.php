@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\DataFeed;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
@@ -11,7 +12,18 @@ class DashboardController extends Controller
     {
         $dataFeed = new DataFeed();
 
-       // return view('pages/dashboard/dashboard', compact('dataFeed'));
+        $usertype = Auth::user()->usertype;
+
+
+        if ($usertype == 'admin') {
+
+            return view('admin.dashboard', compact('dataFeed'));
+        } else {
+
+            return view('pages.dashboard_user.dashboard', compact('dataFeed'));
+        }
+
+
     }
 
 }
